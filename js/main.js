@@ -24,13 +24,9 @@ const stopButton = document.querySelector('.stop-button');
 const stopButton2 = document.querySelector('.stop-button2');
 
 
-
 //Browser identifier
 // Firefox 1.0+
 var isFirefox = typeof InstallTrigger !== 'undefined';
-
-// Chrome 1+
-var isChrome = !!window.chrome && !!window.chrome.webstore;
 
 // Init voices array
 let voices = [];
@@ -62,10 +58,9 @@ if (synth.onvoiceschanged !== undefined) {
 if (isFirefox) {
     getVoices();
 }
-if (isChrome) {
-    if (synth.onvoiceschanged !== undefined) {
-        synth.onvoiceschanged = getVoices;
-    }
+
+if(speechSynthesis != undefined) {
+    speechSynthesis.onvoiceschanged = getVoices;
 }
 
 // Speak
